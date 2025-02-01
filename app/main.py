@@ -34,7 +34,7 @@ def validar_autenticacion_facial(file: UploadFile = File(...), db: Session = Dep
         if utils.compare_faces(known_encoding, unknown_encoding):
             user = db.query(models.Usuario).filter(
                 models.Usuario.id_usuario == autenticacion.id_usuario).first()
-            return {"id_usuario": user.id_usuario, "tipo_usuario": user.tipo_usuario}
+            return {"id_usuario": user.id_usuario}
 
     raise HTTPException(
         status_code=404, detail="No se ha encontrado una coincidencia")
